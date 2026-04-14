@@ -1,0 +1,66 @@
+# Secrets and local config
+.env
+.env.*
+*.local
+*.secret
+*.secrets
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+*.asc
+secrets/
+private/
+
+# OpenClaw runtime and state
+.openclaw/
+openclaw-data/
+state/
+runtime/
+logs/
+cache/
+tmp/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+*.pid
+*.sock
+
+# Session and transcript artifacts
+transcripts/
+sessions/
+artifacts/
+attachments/
+exports/
+
+# Pairing and device identity artifacts
+pairing/
+devices/
+identity/
+bootstrap/
+*.pairing
+*.token.json
+
+# Task and queue data
+queue/
+tasks/
+checkpoints/
+
+# Local editor and OS noise
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Node and package manager
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local git exports or copied metadata
+.git/config.export
+.git-credentials
