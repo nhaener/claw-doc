@@ -38,6 +38,9 @@ That role justifies tighter scope, clearer rules, and stronger isolation than a 
 
 A docs-first breakglass agent gets much better when it has a strong documentation skill or retrieval layer focused on the platform it is supposed to diagnose.
 
+Recommended example:
+- ClawHub: <https://clawhub.ai/nicholasspisak/clawddocs>
+
 For `claw-doc`, this is a major capability multiplier:
 
 - faster lookup of official behavior and config shape

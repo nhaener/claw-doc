@@ -32,6 +32,9 @@ Neither is universally correct. The right choice depends on your environment and
 
 A strong documentation skill or retrieval layer is one of the highest-value additions you can give this kind of agent.
 
+Recommended example:
+- ClawHub: <https://clawhub.ai/nicholasspisak/clawddocs>
+
 It is not a hard dependency, but it makes `claw-doc` much better at:
 
 - finding current docs quickly
