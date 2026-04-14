@@ -1,77 +1,75 @@
 # claw-doc
 
-A public-safe reference repo for a docs-first breakglass OpenClaw agent pattern that runs on its own dedicated gateway.
+`claw-doc` is a public-safe reference repo for building a docs-first breakglass OpenClaw agent on a dedicated gateway.
 
-This repository is intentionally sanitized. It is not Beth, not a production export, and not a backup of any live environment. It exists to show the pattern, the structure, and the operating philosophy without exposing private runtime state.
+It is designed for operators who want a high-trust troubleshooting and documentation agent without publishing a live environment dump.
 
-The key design choice is isolation: the docs/breakglass agent lives on a separate gateway so risky troubleshooting, docs work, and operational experiments do not share the same failure domain as a personal assistant.
+## What claw-doc is
 
-## Why this repo exists
+`claw-doc` is a pattern for an operational agent with a narrow mission:
 
-`claw-doc` captures a practical design for a high-trust, operator-facing OpenClaw deployment:
+- diagnose issues clearly
+- use documentation as a primary source of truth
+- support breakglass workflows when something is wrong
+- stay isolated from everyday personal-assistant runtime state
 
-- docs-first setup and maintenance
-- a dedicated gateway isolated from day-to-day personal agents and their runtime state
-- explicit breakglass behavior for urgent interventions
-- public-safe templates with obvious placeholders
-- sanitization guidance for publishing safely
+## Why a dedicated gateway matters
 
-## Core idea
+The dedicated gateway is the core architectural choice.
 
-The dedicated gateway is a first-class boundary, not an implementation detail.
+A breakglass agent often needs stronger access than a normal assistant. Running it on a separate gateway reduces blast radius, keeps runtime state cleaner, and makes it easier to reason about trust boundaries.
 
-That means:
+## Doctor mode vs advisor mode
 
-- the breakglass agent runs on its own gateway
-- credentials and routing are scoped to that gateway only
-- workspace prompts and operating rules are kept separate from personal environments
-- public docs describe the pattern without leaking machine-specific values
+This repo documents both valid deployment postures:
 
-## Exec posture
+- **Doctor mode**: may intentionally use powerful access such as `exec=full` so the agent can diagnose and remediate issues in the real environment
+- **Advisor mode**: uses more restricted access, giving recommendations without the same hands-on capability
 
-For a real breakglass doctor, `exec=full` is the intended functionality because diagnosis and remediation often require direct access to the live environment.
-
-That said, it is not a requirement to use this pattern.
-
-You can also run `claw-doc` in a more restricted mode if you want a safer, more advisory deployment. The tradeoff is simple:
-
-- `exec=full` = operational doctor that can inspect and fix
-- restricted exec = advisor that can inspect less and may only recommend fixes
-
-Both are valid. This repo documents the operational form honestly, while encouraging operators to choose the risk level that matches their environment.
-
-## Repository layout
-
-- `docs/` explains the model, architecture, deployment approach, and sanitization rules
-- `templates/openclaw.example.json` provides a redacted config example
-- `templates/workspace/` contains example prompt files for a docs-first agent workspace
+Neither is universally correct. The right choice depends on your environment and risk tolerance.
 
 ## Documentation-expert skill
 
-A specialized documentation skill is one of the highest-value additions you can give this kind of agent.
+A strong documentation skill or retrieval layer is one of the highest-value additions you can give this kind of agent.
 
-It is not a critical dependency, and this repo does not require a specific implementation. But if your goal is a real docs/breakglass doctor instead of a generic assistant with a scary title, a strong documentation lookup layer materially improves the result.
+It is not a hard dependency, but it makes `claw-doc` much better at:
 
-## Intended audience
+- finding current docs quickly
+- verifying config and command behavior
+- reducing guesswork during incidents
+- explaining why a fix is recommended
 
-This repo is for operators who want a public reference before building their own dedicated-gateway OpenClaw setup.
+## What this repo includes
+
+- architecture and deployment docs
+- dedicated-gateway guidance
+- sanitization guidance for public publication
+- a redacted OpenClaw config example
+- example workspace prompt files
 
 ## What this repo does not include
 
-- real tokens, secrets, or credentials
-- pairing artifacts or device identity files
-- transcripts, logs, or task databases
-- environment-specific hostnames, paths, IDs, or remotes
-- local git configuration from a real machine
+- live credentials or secrets
+- pairing or device identity artifacts
+- logs, transcripts, or task databases
+- machine-specific runtime state
+- copied local git configuration
 
-## Start here
+## Repository layout
+
+- `docs/` for architecture, deployment, and sanitization guidance
+- `templates/openclaw.example.json` for a public-safe config example
+- `templates/workspace/` for example workspace files
+
+## Getting started
 
 1. Read `docs/OVERVIEW.md`
-2. Review `docs/ARCHITECTURE.md`
+2. Read `docs/ARCHITECTURE.md`
 3. Read `docs/DEDICATED_GATEWAY.md`
-4. Copy the templates and replace placeholders with your own values
-5. Read `docs/SANITIZATION.md` before publishing anything derived from this repo
+4. Review `docs/DEPLOYMENT.md`
+5. Read `docs/SANITIZATION.md` before publishing any derivative work
+6. Copy the templates and replace placeholders with your own values
 
-## Publishing note
+## License
 
-Before this repository is published, Nick should review every file for accidental environment leakage and confirm the language matches the intended public positioning.
+MIT
